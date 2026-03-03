@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | IA & Desarrollo</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Phosphor Icons (for minimal icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-follower"></div>
+
+    <!-- Abstract Luxury Background -->
+    <div class="ambient-smoke"></div>
+    <div class="background-grid"></div>
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="logo">/dev/ai</a>
+
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+                <li><a href="#contacto" class="btn-outline">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Home / Hero Section -->
+        <section id="inicio" class="hero">
+            <div class="hero-content" style="max-width: 1000px; text-align: left;">
+
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem;">
+                    <div
+                        style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--accent-color); box-shadow: 0 0 10px var(--accent-color);">
+                    </div>
+                    <span
+                        style="font-family: var(--font-sans); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary);">Disponible
+                        para proyectos</span>
+                </div>
+
+                <h1 class="hero-title"
+                    style="font-size: clamp(4rem, 8vw, 7rem); line-height: 0.9; margin-bottom: 2rem; text-transform: uppercase;">
+                    SOFTWARE<br>& IA.
+                </h1>
+
+                <p class="hero-subtitle"
+                    style="font-size: 1.25rem; max-width: 600px; line-height: 1.6; color: var(--text-secondary);">
+                    Construyendo soluciones escalables, limpias y eficientes. Especialista en Inteligencia Artificial,
+                    Automatización y 'Vibecoding' de Alto Nivel.
+                </p>
+
+                <div class="hero-cta" style="justify-content: flex-start; margin-top: 4rem; gap: 1rem;">
+                    <a href="#proyectos" class="btn-primary">Proyectos Destacados</a>
+                    <a href="Documentación – CABELLO RAMOS, CARLOS.pdf" download class="btn-outline"><i
+                            class="ph ph-file-pdf"></i> Descargar CV</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="servicios" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Qué hago</h2>
+                <p class="section-desc">Soluciones tecnológicas avanzadas para escalar tu negocio.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="ph ph-robot icon"></i>
+                    <h3>Automatización con IA</h3>
+                    <p>Optimizo procesos repetitivos para que las empresas ahorren tiempo y recursos con IA de
+                        vanguardia.</p>
+                </div>
+                <div class="service-card">
+                    <i class="ph ph-device-mobile icon"></i>
+                    <h3>Desarrollo de Apps</h3>
+                    <p>Creación de aplicaciones web y móviles a medida, enfocadas en rendimiento y experiencia de
+                        usuario.</p>
+                </div>
+                <div class="service-card">
+                    <i class="ph ph-video-camera icon"></i>
+                    <h3>Generación de Vídeo IA</h3>
+                    <p>Producción de contenido visual innovador y dinámico usando los últimos modelos generativos de
+                        vídeo.</p>
+                </div>
+                <div class="service-card">
+                    <i class="ph ph-lightning icon"></i>
+                    <h3>Vibecoding</h3>
+                    <p>Prototipado rápido y ágil. Desarrollo asistido por IA para entregar resultados funcionales en
+                        tiempo récord.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="proyectos" class="section">
+            <div class="section-header">
+                <h2 class="section-title">El Escaparate</h2>
+                <p class="section-desc">Selección de proyectos recientes impulsados por IA y automatización.</p>
+            </div>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <!-- Project 1: Diario de Entrenamiento -->
+                <article class="project-card">
+                    <div class="project-img-wrapper" style="background: linear-gradient(45deg, #111, #222);">
+                        <div class="project-img placeholder-img">
+                            <i class="ph ph-barbell"></i> <!-- Changed icon to a barbell for fitness -->
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span>Web App</span>
+                            <span>Netlify</span>
+                        </div>
+                        <h3>IronLog: Diario de Entrenamiento</h3>
+                        <p>Aplicación web completa para registrar rutinas, series y repeticiones. Diseñada para atletas
+                            que buscan un seguimiento preciso de su progreso.</p>
+                        <a href="#video-modal" class="project-link open-modal" data-video="Ironlog_h264.mp4">Ver Demo en
+                            Vídeo <i class="ph ph-play-circle"></i></a>
+                    </div>
+                </article>
+
+                <!-- Project 2: Dibujos VEO -->
+                <article class="project-card">
+                    <div class="project-img-wrapper">
+                        <!-- Auto-playing muted video as a living thumbnail -->
+                        <video class="project-video-thumbnail" autoplay loop muted playsinline>
+                            <source src="Feb_23__1951_15s_202602232014_2vmw8.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span>Google VEO</span>
+                            <span>Animación</span>
+                        </div>
+                        <h3>Corto de Animación Generativo</h3>
+                        <p>Creación de secuencias animadas completas estilo cartoon utilizando prompts avanzados e
+                            Inteligencia Artificial de Google VEO.</p>
+                        <a href="#video-modal" class="project-link open-modal"
+                            data-video="Feb_23__1951_15s_202602232014_2vmw8.mp4">Ver Corto <i
+                                class="ph ph-play-circle"></i></a>
+                    </div>
+                </article>
+
+                <!-- Project 3: Terror VEO -->
+                <article class="project-card">
+                    <div class="project-img-wrapper" style="border-bottom-color: #550000;">
+                        <!-- Auto-playing muted video as a living thumbnail -->
+                        <video class="project-video-thumbnail" autoplay loop muted playsinline
+                            style="filter: contrast(1.2) brightness(0.8);">
+                            <source src="La_cmara_permanece_completamente_fijala_mujer_est__05b5211cd8.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span>Google VEO</span>
+                            <span>Terror/Cine</span>
+                        </div>
+                        <h3>Hiperrealismo: Secuencia de Terror</h3>
+                        <p>Exploración de los límites del hiperrealismo en la generación de vídeo con IA. Dirección de
+                            arte y prompt engineering para cine de terror.</p>
+                        <a href="#video-modal" class="project-link open-modal"
+                            data-video="La_cmara_permanece_completamente_fijala_mujer_est__05b5211cd8.mp4">Ver Secuencia
+                            <i class="ph ph-play-circle"></i></a>
+                    </div>
+                </article>
+
+                <!-- Project 4: Nexus API Minimalista -->
+                <article class="project-card">
+                    <div class="project-img-wrapper code-art-wrapper">
+                        <!-- CSS art simulating a clean terminal/code block -->
+                        <div class="code-art-block">
+                            <span class="code-line"><span class="code-keyword">import</span> nexus</span>
+                            <span class="code-line"><span class="code-keyword">from</span> core.architecture <span
+                                    class="code-keyword">import</span> Hexagonal</span>
+                            <span class="code-line"></span>
+                            <span class="code-line">app = nexus.init()</span>
+                            <span class="code-line">app.mount(Hexagonal(strict=<span
+                                    class="code-value">True</span>))</span>
+                            <span class="code-line"></span>
+                            <span class="code-line"><span class="code-comment"># Optimized for 0 latency</span></span>
+                            <span class="code-line">app.sys.optimize()</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>Arquitectura Limpia</span>
+                            <span>Backend</span>
+                        </div>
+                        <h3>Nexus: Arquitectura API Minimalista</h3>
+                        <p>Diseño y desarrollo de una API RESTful escalable con arquitectura hexagonal. Optimización de
+                            consultas a la base de datos reduciendo latencias en un 60%. Construido sobre principios
+                            SOLID para un mantenimiento impecable.</p>
+                        <a href="https://github.com" target="_blank" class="project-link">Ver Repositorio <i
+                                class="ph ph-github-logo"></i></a>
+                    </div>
+                </article>
+
+                <!-- Project 5: Synth-Fashion -->
+                <article class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="synth_fashion_campaign.png" alt="Synth Fashion Campaign AI"
+                            class="project-video-thumbnail" style="filter: brightness(0.9) contrast(1.1);">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span>Dirección de Arte IA</span>
+                            <span>Prompt Engineering</span>
+                        </div>
+                        <h3>Synth-Fashion: Campaña Generativa</h3>
+                        <p>Dirección de arte sintética para concepto de campaña publicitaria. Flujo de trabajo completo:
+                            desde el 'prompt engineering' inicial hasta la composición final y escalado de texturas con
+                            modelos de difusión.</p>
+                        <a href="#video-modal" class="project-link open-modal"
+                            data-image="synth_fashion_campaign.png">Ver Caso de Estudio <i
+                                class="ph ph-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Project 6: Kinetik Type CSS Art -->
+                <article class="project-card">
+                    <div class="project-img-wrapper fluid-art-wrapper">
+                        <!-- Pure CSS animated fluid background -->
+                        <div class="fluid-background"></div>
+                        <div class="fluid-glass">
+                            <h4 class="fluid-text">KINETIK</h4>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span>CSS Avanzado</span>
+                            <span>Creative Coding</span>
+                            <span>Front-End</span>
+                        </div>
+                        <h3>Kinetik Type: Interfaz Fluida</h3>
+                        <p>Exploración de "Creative Coding" usando puro CSS para generar texturas animadas complejas y
+                            metales líquidos. Desarrollo de interfaces de alto impacto visual sin depender de vídeos
+                            pesados de fondo, optimizando el rendimiento web.</p>
+                        <a href="https://codepen.io" target="_blank" class="project-link">Ver Código Interactivo <i
+                                class="ph ph-code"></i></a>
+                    </div>
+                </article>
+
+                <!-- Project 7: Epic Concept Art -->
+                <article class="project-card">
+                    <div class="project-img-wrapper pattern-bg">
+                        <img src="epic_concept_art.png" alt="Epic Environment Concept Art AI"
+                            class="project-video-thumbnail" style="filter: brightness(0.85) contrast(1.15);">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span>Midjourney/VEO</span>
+                            <span>Concept Art</span>
+                            <span>Iluminación</span>
+                        </div>
+                        <h3>Éxodo: Escenografía Sci-Fi</h3>
+                        <p>Generación algorítmica de entornos a gran escala ("Environment Design"). Uso avanzado de
+                            prompts para forzar iluminación volumétrica cinematográfica, sombras puras y escala
+                            arquitectónica de grado Hollywood, demostrando control total sobre el encuadre sintético.
+                        </p>
+                        <a href="#video-modal" class="project-link open-modal"
+                            data-image="epic_concept_art.png">Imágenes Alta Resolución <i
+                                class="ph ph-arrow-right"></i></a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="sobre-mi" class="section about-section">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2 class="section-title">La tecnología es el medio, <br>el impacto es el fin.</h2>
+                    <p>Soy un desarrollador apasionado por el "Vibecoding" y la inteligencia artificial. Creo que el
+                        futuro del desarrollo no trata solo de escribir código, sino de orquestar soluciones que aporten
+                        un valor real e inmediato.</p>
+                    <p>Mi stack incluye el desarrollo moderno de interfaces, la integración de modelos de IA
+                        (Antigravity, GPT, Claude), y arquitecturas escalables.</p>
+                    <div class="tech-stack">
+                        <div class="tech-item"><i class="ph ph-file-html"></i> HTML/CSS</div>
+                        <div class="tech-item"><i class="ph ph-file-js"></i> JavaScript</div>
+                        <div class="tech-item"><i class="ph ph-file-python"></i> Python</div>
+                        <div class="tech-item"><i class="ph ph-brain"></i> IA & Automatización</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contacto" class="section contact-section">
+            <div class="contact-card">
+                <h2>¿Listo para construir el futuro?</h2>
+                <p>Estoy disponible para nuevos retos, automatizaciones a medida o un café virtual para hablar de
+                    tecnología.</p>
+                <div class="contact-actions">
+                    <a href="mailto:cmindlab.ccr@gmail.com" class="btn-primary">Enviar un mensaje</a>
+                    <a href="https://www.linkedin.com/in/carlos-cabello-a7695534b/" target="_blank"
+                        class="btn-outline"><i class="ph ph-linkedin-logo"></i> LinkedIn</a>
+                    <a href="Documentación – CABELLO RAMOS, CARLOS.pdf" download class="btn-outline">
+                        <i class="ph ph-file-pdf"></i> Descargar CV
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vision / Philosophy Quote -->
+        <section class="section quote-section">
+            <div class="quote-container">
+                <blockquote>
+                    "El código es solo una herramienta. El verdadero valor reside en entender el problema, orquestar las
+                    mejores tecnologías y construir la visión impecable de un producto."
+                </blockquote>
+                <cite>— Filosofía del Vibecoding (Inspirada en S. Jobs)</cite>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Video Demo -->
+    <div id="video-modal" class="modal">
+        <div class="modal-content expanded-modal">
+            <span class="close-modal"><i class="ph ph-x"></i></span>
+
+            <div class="modal-layout">
+                <div class="modal-video-col">
+                    <div class="video-container" id="media-container">
+                        <!-- Media will be injected here by JS (video or img) -->
+                    </div>
+                </div>
+
+                <div class="modal-info-col">
+                    <h3>IronLog: El Diario Definitivo</h3>
+                    <p class="modal-subtitle">Desarrollo Web / AI Gamification</p>
+
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="ph ph-notebook"></i>
+                            <div>
+                                <h4>Gestión Total</h4>
+                                <p>Diario inteligente con RPE, rutinas dinámicas (guardar/cargar plantillas), cronómetro
+                                    flotante y buscador de ejercicios.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="ph ph-chart-line-up"></i>
+                            <div>
+                                <h4>Análisis y Datos</h4>
+                                <p>Radar de volumen muscular, mapa de calor de constancia anual, detector de PRs (Salón
+                                    de la Fama) y gráficas de evolución de carga.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="ph ph-heartbeat"></i>
+                            <div>
+                                <h4>Salud y Biometría</h4>
+                                <p>Calculadora de Macros según objetivos, seguimiento de peso corporal, control de
+                                    suplementación y cálculo del 1RM teórico.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="ph ph-sword"></i>
+                            <div>
+                                <h4>Gamificación RPG</h4>
+                                <p>Sistema de puntos de experiencia (XP) y niveles para tu "Avatar de Atleta" basados en
+                                    el volumen levantado.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="ph ph-brain"></i>
+                            <div>
+                                <h4>Mentalidad</h4>
+                                <p>Protocolo R.A.M.P de calentamiento, Códex del Hierro (filosofía estoica) y Maestría
+                                    de Core por niveles.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="ph ph-shield-check"></i>
+                            <div>
+                                <h4>Arquitectura Premium</h4>
+                                <p>100% Offline, privacidad local (en el navegador), sistema de backups exportables y
+                                    temas Pitch Black o Claro.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>

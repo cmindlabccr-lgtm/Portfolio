@@ -95,12 +95,71 @@ document.addEventListener('DOMContentLoaded', () => {
             const modalLayout = modal.querySelector('.modal-layout');
             const infoCol = modal.querySelector('.modal-info-col');
 
-            if (isIronLog) {
+            if (isIronLog || isKinetik) {
                 modalLayout.style.gridTemplateColumns = '1.2fr 1fr';
                 infoCol.style.display = 'block';
             } else {
                 modalLayout.style.gridTemplateColumns = '1fr';
                 infoCol.style.display = 'none';
+            }
+
+            // Populate Info Column dynamically based on project
+            if (isIronLog) {
+                infoCol.innerHTML = `
+                    <h3>IronLog: El Diario Definitivo</h3>
+                    <p class="modal-subtitle">Desarrollo Web / AI Gamification</p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="ph ph-notebook"></i>
+                            <div>
+                                <h4>Gestión Total</h4>
+                                <p>Diario inteligente con RPE, rutinas dinámicas (guardar/cargar plantillas), cronómetro flotante y buscador de ejercicios.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="ph ph-chart-line-up"></i>
+                            <div>
+                                <h4>Análisis y Datos</h4>
+                                <p>Radar de volumen muscular, mapa de calor de constancia anual, detector de PRs y gráficas de evolución.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="ph ph-sword"></i>
+                            <div>
+                                <h4>Gamificación RPG</h4>
+                                <p>Sistema de puntos de experiencia (XP) y niveles para tu "Avatar de Atleta" basados en el volumen levantado.</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (isKinetik) {
+                infoCol.innerHTML = `
+                    <h3>Kinetik: Magia en CSS Puro</h3>
+                    <p class="modal-subtitle">Creative Coding & Rendimiento</p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="ph ph-drop"></i>
+                            <div>
+                                <h4>Efecto "Metal Líquido"</h4>
+                                <p>El truco: Se combinan manchas de color borrosas (blur) con un filtro SVG de Matriz de Color de altísimo contraste. Al superponerse obligan al navegador a "fundir" los bordes.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="ph ph-lightning"></i>
+                            <div>
+                                <h4>0% Imágenes / 0% Vídeos</h4>
+                                <p>A diferencia de otras webs de lujo que usan pesados clips en bucle, esto pesa literalmente unos pocos *kilobytes* calculados en tiempo real por el procesador gráfico (GPU).</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="ph ph-file-js"></i>
+                            <div>
+                                <h4>Sin Librerías JS</h4>
+                                <p>Tampoco se usan herramientas externas como Three.js o WebGL. El movimiento orgánico (la danza de los blobs) se logra entrelazando 4 animaciones "@keyframes" con tiempos primos asimétricos para que nunca se repita igual.</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
             }
 
             // Clear previous media
@@ -109,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Inject Image or Video or Kinetik Art
             if (isKinetik) {
                 const kinetikHTML = `
-                    <div class="fluid-art-wrapper" style="width: 100%; height: 60vh; border-radius: 20px;">
+                    <div class="fluid-art-wrapper" style="width: 100%; height: 100%; min-height: 60vh; border-radius: 20px;">
                         <svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1">
                             <defs>
                                 <filter id="goo2">
@@ -125,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="blob blob-3"></div>
                             <div class="blob blob-4"></div>
                         </div>
-                        <div class="fluid-glass" style="transform: scale(1.5);">
+                        <div class="fluid-glass" style="transform: scale(1.2);">
                             <h4 class="fluid-text">KINETIK</h4>
                         </div>
                     </div>

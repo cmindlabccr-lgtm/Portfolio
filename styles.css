@@ -723,39 +723,37 @@ main {
 .blob {
     position: absolute;
     border-radius: 50%;
-    /* Monochromatic slightly greenish/blueish metal colors to match luxury tech vibe */
-    background: radial-gradient(circle at 30% 30%, #444, #111, #000);
     /* Soften the edges before they hit the SVG filter */
-    filter: blur(8px);
-    box-shadow: inset -10px -10px 40px rgba(0, 0, 0, 0.8), inset 10px 10px 40px rgba(255, 255, 255, 0.1);
+    filter: blur(12px);
+    box-shadow: inset -10px -10px 40px rgba(0, 0, 0, 0.8), inset 10px 10px 40px rgba(255, 255, 255, 0.05);
 }
 
 .blob-1 {
     width: 180px;
     height: 180px;
-    background: radial-gradient(circle at 30% 30%, #10b981, #053b29, #000);
-    /* Emerald accent */
+    background: #053b29;
+    /* Solid Emerald accent, blur handles the rest */
     animation: moveBlob1 12s infinite alternate ease-in-out;
 }
 
 .blob-2 {
     width: 220px;
     height: 250px;
-    background: radial-gradient(circle at 30% 30%, #555, #111, #000);
+    background: #1a1a1a;
     animation: moveBlob2 15s infinite alternate-reverse ease-in-out;
 }
 
 .blob-3 {
     width: 150px;
     height: 150px;
-    background: radial-gradient(circle at 30% 30%, #333, #000, #000);
+    background: #111111;
     animation: moveBlob3 10s infinite alternate ease-in-out;
 }
 
 .blob-4 {
     width: 280px;
     height: 280px;
-    background: radial-gradient(circle at 30% 30%, #222, #050505, #000);
+    background: #0a0a0a;
     animation: moveBlob4 18s infinite alternate-reverse ease-in-out;
 }
 

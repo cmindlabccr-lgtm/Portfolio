@@ -385,11 +385,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const constraints = document.getElementById('text-constraints').value.trim();
         const format = document.getElementById('text-format').value.trim();
 
-        let prompt = `Actúa como un experto ${rol}. \n\nTu objetivo principal es: ${obj}.\n`;
-        if (context) prompt += `\nContexto: ${context}\n`;
-        if (constraints) prompt += `\nRestricciones obligatorias: ${constraints}\n`;
-        if (format) prompt += `\nFormato de salida esperado: ${format}\n`;
-        prompt += `\nAsegúrate de ser claro, estructurado y de no inventar información.`;
+        let prompt = `[ROLES Y CONTEXTO]\nActúa como un experto: ${rol}.\nTu perfil requiere respuestas precisas, profesionales y detalladas, evitando el lenguaje genérico o disculpas previas.\n\n[OBJETIVO PRINCIPAL]\nDebes realizar la siguiente tarea:\n${obj}\n`;
+
+        if (context) prompt += `\n[CONTEXTO DEL PROYECTO]\n${context}\n`;
+        if (constraints) prompt += `\n[RESTRICCIONES Y LIMITACIONES]\nCumple estrictamente con las siguientes reglas:\n- ${constraints}\n`;
+
+        prompt += `\n[FORMATO DE SALIDA]\n${format ? format : 'Utiliza un formato Markdown estructurado, con uso de formato para resaltar conceptos clave y separar claramente las secciones.'}\n\n[INSTRUCCIONES ADICIONALES]\nAntes de generar la respuesta final, realiza un breve análisis paso a paso de tu enfoque. Asegúrate de adaptar tu tono al rol indicado, tal como dictan las mejores prácticas de Prompt Engineering.`;
 
         typeWriterEffect(prompt, resultText);
     });
@@ -403,11 +404,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const conditions = document.getElementById('code-conditions').value.trim();
         const isCot = document.getElementById('code-cot').checked;
 
-        let prompt = `Eres un Desarrollador Senior experto en ${lang}.\n\nObjetivo: ${obj}.\n`;
-        if (inputs) prompt += `\nInputs/Datos de entrada: ${inputs}\n`;
-        if (conditions) prompt += `\nCondiciones y Edge Cases a tener en cuenta: ${conditions}\n`;
-        if (isCot) prompt += `\nIMPORTANTE: Piensa paso a paso (Chain of Thought). Explica brevemente tu lógica antes de escribir el código final.\n`;
-        prompt += `\nEntrega el código limpio, comentado y optimizado para producción.`;
+        let prompt = `[ROL TÉCNICO]\nEres un Desarrollador de Software Senior y Arquitecto de Sistemas experto en: ${lang}.\nTu código debe seguir los principios SOLID, Clean Code y debe estar completamente preparado para entornos de producción.\n\n[OBJETIVO DEL DESARROLLO]\n${obj}\n`;
+
+        if (inputs) prompt += `\n[ENTRADAS Y ESTRUCTURAS DE DATOS]\n${inputs}\n`;
+        if (conditions) prompt += `\n[EDGE CASES Y MANEJO DE ERRORES]\nPresta especial atención y solventa los siguientes puntos críticos:\n- ${conditions}\n`;
+
+        if (isCot) prompt += `\n[RAZONAMIENTO: CHAIN OF THOUGHT]\nIMPORTANTE: Antes de escribir el bloque de código, añade una sección <razonamiento> donde expliques mentalmente paso a paso cómo vas a resolver el problema, qué estructuras de datos elegirás, cuál será su complejidad algorítmica y por qué.\n`;
+
+        prompt += `\n[FORMATO ESPERADO]\n- Código fuente implementado de forma modular (evita archivos masivos).\n- Comentarios explicativos solo en la lógica compleja de negocio.\n- Breves instrucciones de cómo ejecutar/instalar/testear la solución.`;
 
         typeWriterEffect(prompt, resultText);
     });
@@ -423,11 +427,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const lens = document.getElementById('av-lens').value;
         const mood = document.getElementById('av-mood').value.trim();
 
-        let prompt = `${subject} ${action}, ${style}.`;
-        if (context) prompt += ` Contexto visual: ${context}.`;
-        prompt += `\n\nCinematografía: Iluminación ${lighting}, Lente ${lens}.`;
-        if (mood) prompt += ` Mood/Atmósfera: ${mood}.`;
-        prompt += `\nAlta calidad, masterpiece, hiperdetallado, renderizado profesional.`;
+        let prompt = `[SUBJECT & ACTION]\n${subject}, ${action}.\n`;
+        prompt += `\n[SETTING & CONTEXT]\n${context ? context : '(Contexto ambiguo o abstracto)'}.\n`;
+        prompt += `\n[CINEMATOGRAPHY & LIGHTING]\n- Lighting: ${lighting}\n- Lens & Camera: ${lens}\n`;
+        prompt += `\n[STYLE & MOOD]\n- Aesthetic: ${style}\n- Atmosphere: ${mood ? mood : 'Cinematográfico, profundo'}\n`;
+        prompt += `\n[QUALITY & RENDER TAGS]\nRAW photo, masterpiece, hyper-realistic, highly detailed, photorealistic, cinematic composition, breathtaking, award-winning photography, volumetric lighting, HDR --v 6.1 --ar 16:9 --style raw`;
 
         typeWriterEffect(prompt, resultText);
     });

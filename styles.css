@@ -698,7 +698,7 @@ main {
 
 /* Fluid Kinetik Type Art */
 .fluid-art-wrapper {
-    background-color: #020202;
+    background-color: #050505;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -708,43 +708,135 @@ main {
 
 .fluid-background {
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(from 0deg at 50% 50%, #000000, #10b981, #080808, #1a1a1a, #000000);
-    filter: blur(60px);
-    animation: rotateFluid 10s linear infinite;
-    opacity: 0.4;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Key: This filter interacts with the SVG to create the liquid melt effect */
+    filter: url('#goo');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Base style for the liquid metal blobs */
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    /* Monochromatic slightly greenish/blueish metal colors to match luxury tech vibe */
+    background: radial-gradient(circle at 30% 30%, #444, #111, #000);
+    /* Soften the edges before they hit the SVG filter */
+    filter: blur(8px);
+    box-shadow: inset -10px -10px 40px rgba(0, 0, 0, 0.8), inset 10px 10px 40px rgba(255, 255, 255, 0.1);
+}
+
+.blob-1 {
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle at 30% 30%, #10b981, #053b29, #000);
+    /* Emerald accent */
+    animation: moveBlob1 12s infinite alternate ease-in-out;
+}
+
+.blob-2 {
+    width: 220px;
+    height: 250px;
+    background: radial-gradient(circle at 30% 30%, #555, #111, #000);
+    animation: moveBlob2 15s infinite alternate-reverse ease-in-out;
+}
+
+.blob-3 {
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle at 30% 30%, #333, #000, #000);
+    animation: moveBlob3 10s infinite alternate ease-in-out;
+}
+
+.blob-4 {
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle at 30% 30%, #222, #050505, #000);
+    animation: moveBlob4 18s infinite alternate-reverse ease-in-out;
 }
 
 .fluid-glass {
     position: relative;
     z-index: 2;
     background: rgba(10, 10, 10, 0.4);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.05);
     padding: 2rem 4rem;
-    border-radius: 4px;
+    border-radius: 40px;
+    /* Soft pulsing glow */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.02);
 }
 
 .fluid-text {
     font-size: clamp(2rem, 4vw, 3rem);
     font-family: var(--font-heading);
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+    /* Make text interact with the background behind the glass */
+    color: #ffffff;
+    opacity: 0.9;
     letter-spacing: 0.5rem;
     margin: 0;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-@keyframes rotateFluid {
+/* Keyframes to make the blobs drift slowly and organically */
+@keyframes moveBlob1 {
     0% {
-        transform: rotate(0deg);
+        transform: translate(-30%, -40%) scale(1);
+    }
+
+    50% {
+        transform: translate(20%, 30%) scale(1.2);
     }
 
     100% {
-        transform: rotate(360deg);
+        transform: translate(-10%, 50%) scale(0.9);
+    }
+}
+
+@keyframes moveBlob2 {
+    0% {
+        transform: translate(40%, 20%) scale(0.8);
+    }
+
+    50% {
+        transform: translate(-20%, -30%) scale(1.1);
+    }
+
+    100% {
+        transform: translate(10%, -50%) scale(1.3);
+    }
+}
+
+@keyframes moveBlob3 {
+    0% {
+        transform: translate(-50%, 50%) scale(1.1);
+    }
+
+    50% {
+        transform: translate(30%, -20%) scale(0.9);
+    }
+
+    100% {
+        transform: translate(50%, 40%) scale(1.2);
+    }
+}
+
+@keyframes moveBlob4 {
+    0% {
+        transform: translate(30%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-40%, 10%) scale(1.3);
+    }
+
+    100% {
+        transform: translate(-20%, -20%) scale(0.8);
     }
 }
 

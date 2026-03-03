@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const videoSrc = btn.getAttribute('data-video');
             const imgSrc = btn.getAttribute('data-image');
+            const isKinetik = btn.getAttribute('data-kinetik') === 'true';
             const isIronLog = videoSrc && videoSrc.includes('Ironlog');
 
             // Adjust Modal Layout based on project type
@@ -105,8 +106,32 @@ document.addEventListener('DOMContentLoaded', () => {
             // Clear previous media
             mediaContainer.innerHTML = '';
 
-            // Inject Image or Video
-            if (videoSrc) {
+            // Inject Image or Video or Kinetik Art
+            if (isKinetik) {
+                const kinetikHTML = `
+                    <div class="fluid-art-wrapper" style="width: 100%; height: 60vh; border-radius: 20px;">
+                        <svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1">
+                            <defs>
+                                <filter id="goo2">
+                                    <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur" />
+                                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 25 -10" result="goo2" />
+                                    <feComposite in="SourceGraphic" in2="goo2" operator="atop"/>
+                                </filter>
+                            </defs>
+                        </svg>
+                        <div class="fluid-background" style="filter: url('#goo2');">
+                            <div class="blob blob-1"></div>
+                            <div class="blob blob-2"></div>
+                            <div class="blob blob-3"></div>
+                            <div class="blob blob-4"></div>
+                        </div>
+                        <div class="fluid-glass" style="transform: scale(1.5);">
+                            <h4 class="fluid-text">KINETIK</h4>
+                        </div>
+                    </div>
+                `;
+                mediaContainer.innerHTML = kinetikHTML;
+            } else if (videoSrc) {
                 const videoElement = document.createElement('video');
                 videoElement.id = 'demo-player';
                 videoElement.controls = true;

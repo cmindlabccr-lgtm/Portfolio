@@ -89,13 +89,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const videoSrc = btn.getAttribute('data-video');
             const imgSrc = btn.getAttribute('data-image');
             const isKinetik = btn.getAttribute('data-kinetik') === 'true';
+            const isExodo = btn.getAttribute('data-exodo') === 'true';
             const isIronLog = videoSrc && videoSrc.includes('Ironlog');
 
             // Adjust Modal Layout based on project type
             const modalLayout = modal.querySelector('.modal-layout');
             const infoCol = modal.querySelector('.modal-info-col');
 
-            if (isIronLog || isKinetik) {
+            if (isIronLog || isKinetik || isExodo) {
                 modalLayout.style.gridTemplateColumns = '1.2fr 1fr';
                 infoCol.style.display = 'block';
             } else {
@@ -160,6 +161,34 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                 `;
+            } else if (isExodo) {
+                infoCol.innerHTML = `
+                    <h3>Éxodo: Escenografía Sci-Fi</h3>
+                    <p class="modal-subtitle">IA Concept Art / Dirección de Arte</p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="ph ph-sun"></i>
+                            <div>
+                                <h4>Iluminación Volumétrica</h4>
+                                <p>Control preciso de sombras 'god rays' y neblina dispersa mediante prompts de iluminación global negativa y parámetros de contraste forzado.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="ph ph-buildings"></i>
+                            <div>
+                                <h4>Escala Monumental</h4>
+                                <p>Técnicas de orquestación visual para simular arquitectura a escala planetaria, integrando elementos de referencia para engañar al ojo y generar inmensidad.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="ph ph-camera"></i>
+                            <div>
+                                <h4>Control de Encuadre</h4>
+                                <p>Uso de distancias focales (35mm, anamórfico) y reglas de composición cinematográfica integradas en el lenguaje de IA para resultados predecibles y artísticos.</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
             }
 
             // Clear previous media
@@ -190,18 +219,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 `;
                 mediaContainer.innerHTML = kinetikHTML;
-            } else if (videoSrc) {
-                const videoElement = document.createElement('video');
-                videoElement.id = 'demo-player';
-                videoElement.controls = true;
-                videoElement.preload = 'metadata';
-                videoElement.innerHTML = `<source src="${videoSrc}" type="video/mp4">Tu navegador no soporta la etiqueta de vídeo.`;
-                mediaContainer.appendChild(videoElement);
-
-                // Auto-play the demo video when opened
+                // Add entry class to the newly created wrapper
                 setTimeout(() => {
-                    videoElement.play().catch(e => console.log("Can't auto-play demo", e));
-                }, 300);
+                    mediaContainer.querySelector('.fluid-art-wrapper').classList.add('modal-media-entry');
+                }, 50);
             } else if (imgSrc) {
                 const imgElement = document.createElement('img');
                 imgElement.src = imgSrc;
@@ -210,6 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 imgElement.style.maxHeight = '85vh';
                 imgElement.style.objectFit = 'contain';
                 imgElement.style.display = 'block';
+                imgElement.classList.add('modal-media-entry');
                 mediaContainer.appendChild(imgElement);
             }
 
@@ -270,4 +292,161 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // 6. 3D Parallax Logic for Éxodo Card
+    const exodoCard = document.querySelector('.project-link[data-exodo="true"]')?.closest('.project-card');
+    if (exodoCard) {
+        exodoCard.classList.add('parallax-card');
+        const wrapper = exodoCard.querySelector('.project-img-wrapper');
+
+        exodoCard.addEventListener('mousemove', (e) => {
+            const rect = exodoCard.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            // Normalize coordinates to -1 to 1
+            const xc = (x - rect.width / 2) / (rect.width / 2);
+            const yc = (y - rect.height / 2) / (rect.height / 2);
+
+            // Set rotation values (max 10deg)
+            const rotateX = -yc * 10;
+            const rotateY = xc * 10;
+
+            // Apply transform to the wrapper
+            wrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+            // Set CSS variables for the shine effect
+            wrapper.style.setProperty('--px', `${x}px`);
+            wrapper.style.setProperty('--py', `${y}px`);
+        });
+
+        // Reset on mouse leave
+        exodoCard.addEventListener('mouseleave', () => {
+            wrapper.style.transform = `rotateX(0) rotateY(0)`;
+        });
+    }
+
+    // ==========================================
+    // 7. PromptForge Logic
+    // ==========================================
+    const modeBtns = document.querySelectorAll('.mode-btn');
+    const pfForms = document.querySelectorAll('.pf-form');
+    const resultText = document.getElementById('pf-result-text');
+    const copyBtn = document.getElementById('pf-copy-btn');
+
+    // Switch Modes
+    modeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active button
+            modeBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Hide all forms, show selected
+            const mode = btn.getAttribute('data-mode');
+            pfForms.forEach(form => form.classList.remove('active-form'));
+            document.getElementById(`${mode}-prompt-form`).classList.add('active-form');
+
+            // Reset output
+            resultText.textContent = "Esperando nueva configuración...";
+            resultText.style.color = 'var(--text-secondary)';
+            copyBtn.disabled = true;
+        });
+    });
+
+    // Helper: Typewriter Effect
+    function typeWriterEffect(text, element, speed = 10) {
+        element.textContent = '';
+        element.style.color = 'var(--accent-glow)';
+        let i = 0;
+        element.classList.add('typing-cursor');
+
+        function type() {
+            if (i < text.length) {
+                element.textContent += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            } else {
+                element.classList.remove('typing-cursor');
+                element.style.color = '#e5e5e5'; // Final color
+                copyBtn.disabled = false;
+            }
+        }
+        type();
+    }
+
+    // Generator Functions (Based on the Gem Architecture)
+
+    // TEXT PROMPT
+    document.getElementById('text-prompt-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const rol = document.getElementById('text-rol').value.trim();
+        const obj = document.getElementById('text-obj').value.trim();
+        const context = document.getElementById('text-context').value.trim();
+        const constraints = document.getElementById('text-constraints').value.trim();
+        const format = document.getElementById('text-format').value.trim();
+
+        let prompt = `Actúa como un experto ${rol}. \n\nTu objetivo principal es: ${obj}.\n`;
+        if (context) prompt += `\nContexto: ${context}\n`;
+        if (constraints) prompt += `\nRestricciones obligatorias: ${constraints}\n`;
+        if (format) prompt += `\nFormato de salida esperado: ${format}\n`;
+        prompt += `\nAsegúrate de ser claro, estructurado y de no inventar información.`;
+
+        typeWriterEffect(prompt, resultText);
+    });
+
+    // CODE PROMPT
+    document.getElementById('code-prompt-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const lang = document.getElementById('code-lang').value.trim();
+        const obj = document.getElementById('code-obj').value.trim();
+        const inputs = document.getElementById('code-inputs').value.trim();
+        const conditions = document.getElementById('code-conditions').value.trim();
+        const isCot = document.getElementById('code-cot').checked;
+
+        let prompt = `Eres un Desarrollador Senior experto en ${lang}.\n\nObjetivo: ${obj}.\n`;
+        if (inputs) prompt += `\nInputs/Datos de entrada: ${inputs}\n`;
+        if (conditions) prompt += `\nCondiciones y Edge Cases a tener en cuenta: ${conditions}\n`;
+        if (isCot) prompt += `\nIMPORTANTE: Piensa paso a paso (Chain of Thought). Explica brevemente tu lógica antes de escribir el código final.\n`;
+        prompt += `\nEntrega el código limpio, comentado y optimizado para producción.`;
+
+        typeWriterEffect(prompt, resultText);
+    });
+
+    // AUDIOVISUAL PROMPT
+    document.getElementById('av-prompt-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const subject = document.getElementById('av-subject').value.trim();
+        const action = document.getElementById('av-action').value.trim();
+        const style = document.getElementById('av-style').value;
+        const context = document.getElementById('av-context').value.trim();
+        const lighting = document.getElementById('av-lighting').value;
+        const lens = document.getElementById('av-lens').value;
+        const mood = document.getElementById('av-mood').value.trim();
+
+        let prompt = `${subject} ${action}, ${style}.`;
+        if (context) prompt += ` Contexto visual: ${context}.`;
+        prompt += `\n\nCinematografía: Iluminación ${lighting}, Lente ${lens}.`;
+        if (mood) prompt += ` Mood/Atmósfera: ${mood}.`;
+        prompt += `\nAlta calidad, masterpiece, hiperdetallado, renderizado profesional.`;
+
+        typeWriterEffect(prompt, resultText);
+    });
+
+    // Copy to Clipboard
+    copyBtn.addEventListener('click', () => {
+        const textToCopy = resultText.textContent;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            const originalText = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<i class="ph ph-check"></i> Copiado';
+            copyBtn.style.color = 'var(--accent-color)';
+            copyBtn.style.borderColor = 'var(--accent-color)';
+
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+                copyBtn.style.color = '';
+                copyBtn.style.borderColor = '';
+            }, 2000);
+        });
+    });
+
 });

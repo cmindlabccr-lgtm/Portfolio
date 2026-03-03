@@ -38,6 +38,7 @@
             <ul class="nav-links">
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#promptforge">PromptForge</a></li>
                 <li><a href="#sobre-mi">Sobre mí</a></li>
                 <li><a href="#contacto" class="btn-outline">Contacto</a></li>
             </ul>
@@ -297,12 +298,169 @@
                             prompts para forzar iluminación volumétrica cinematográfica, sombras puras y escala
                             arquitectónica de grado Hollywood, demostrando control total sobre el encuadre sintético.
                         </p>
-                        <a href="#video-modal" class="project-link open-modal"
-                            data-image="epic_concept_art.png">Imágenes Alta Resolución <i
-                                class="ph ph-arrow-right"></i></a>
+                        <a href="#video-modal" class="project-link open-modal" data-image="epic_concept_art.png"
+                            data-exodo="true">Imágenes Alta Resolución <i class="ph ph-arrow-right"></i></a>
                     </div>
                 </article>
 
+            </div>
+        </section>
+
+        <!-- PromptForge Section -->
+        <section id="promptforge" class="section promptforge-section">
+            <div class="section-header">
+                <h2 class="section-title">PromptForge</h2>
+                <p class="section-desc">Generador interactivo de prompts estructurados basados en arquitectura de IA
+                    profesional.</p>
+            </div>
+
+            <div class="promptforge-container">
+                <!-- Mode Selector -->
+                <div class="prompt-mode-selector">
+                    <button class="mode-btn active" data-mode="text"><i class="ph ph-text-t"></i> Texto</button>
+                    <button class="mode-btn" data-mode="code"><i class="ph ph-code"></i> Código</button>
+                    <button class="mode-btn" data-mode="av"><i class="ph ph-video-camera"></i> Audiovisual</button>
+                </div>
+
+                <div class="promptforge-grid">
+                    <!-- Form Area -->
+                    <div class="prompt-form-area">
+                        <!-- Text Prompt Form -->
+                        <form id="text-prompt-form" class="pf-form active-form">
+                            <div class="form-group">
+                                <label for="text-rol">Rol / Persona</label>
+                                <input type="text" id="text-rol" placeholder="Ej. Arquitecto de Software Senior"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="text-obj">Objetivo Principal</label>
+                                <textarea id="text-obj"
+                                    placeholder="Ej. Diseñar la estructura de microservicios para un e-commerce"
+                                    required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="text-context">Contexto (Opcional)</label>
+                                <textarea id="text-context"
+                                    placeholder="Ej. El tráfico esperado es de 10k usuarios concurrentes..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="text-constraints">Restricciones (Opcional)</label>
+                                <input type="text" id="text-constraints"
+                                    placeholder="Ej. Usar AWS, no usar bases de datos NoSQL">
+                            </div>
+                            <div class="form-group">
+                                <label for="text-format">Formato de Salida</label>
+                                <input type="text" id="text-format"
+                                    placeholder="Ej. Tabla comparativa, lista de viñetas, Markdown">
+                            </div>
+                            <button type="submit" class="btn-primary pf-generate-btn">
+                                <i class="ph ph-sparkle"></i> Ensamblar Prompt
+                            </button>
+                        </form>
+
+                        <!-- Code Prompt Form -->
+                        <form id="code-prompt-form" class="pf-form">
+                            <div class="form-group">
+                                <label for="code-lang">Lenguaje / Tecnología</label>
+                                <input type="text" id="code-lang" placeholder="Ej. Python 3, React, Rust" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="code-obj">Objetivo del Código</label>
+                                <textarea id="code-obj"
+                                    placeholder="Ej. Crear un script que extraiga datos de una API y los guarde en CSV"
+                                    required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="code-inputs">Inputs Disponibles</label>
+                                <input type="text" id="code-inputs"
+                                    placeholder="Ej. Array de JSONs, un archivo de texto...">
+                            </div>
+                            <div class="form-group">
+                                <label for="code-conditions">Condiciones / Edge Cases</label>
+                                <input type="text" id="code-conditions"
+                                    placeholder="Ej. Evitar bloqueos de red, manejar errores 404">
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="code-cot" checked>
+                                <label for="code-cot">Forzar <span>Chain of Thought</span> ("Piensa paso a
+                                    paso")</label>
+                            </div>
+                            <button type="submit" class="btn-primary pf-generate-btn">
+                                <i class="ph ph-sparkle"></i> Ensamblar Prompt
+                            </button>
+                        </form>
+
+                        <!-- AV Prompt Form -->
+                        <form id="av-prompt-form" class="pf-form">
+                            <div class="form-group">
+                                <label for="av-subject">Sujeto Príncipal</label>
+                                <input type="text" id="av-subject"
+                                    placeholder="Ej. Astronauta joven, coche deportivo clásico..." required>
+                            </div>
+                            <div class="form-group">
+                                <label for="av-action">Acción / Movimiento</label>
+                                <input type="text" id="av-action"
+                                    placeholder="Ej. Caminando a cámara lenta bajo la lluvia" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="av-style">Estilo Visual</label>
+                                <select id="av-style">
+                                    <option value="Cinematográfico Hiperrealista">Cinematográfico Hiperrealista</option>
+                                    <option value="Animación 3D Pixar">Animación 3D Estilo Pixar</option>
+                                    <option value="Cyberpunk Neón">Cyberpunk Neón</option>
+                                    <option value="Fotografía Analógica (Grano)">Fotografía Analógica</option>
+                                    <option value="Concept Art Épico">Concept Art Épico</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="av-context">Contexto / Entorno</label>
+                                <input type="text" id="av-context"
+                                    placeholder="Ej. Ciudad futurista en ruinas, montaña nevada">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group half">
+                                    <label for="av-lighting">Iluminación</label>
+                                    <select id="av-lighting">
+                                        <option value="Volumétrica">Volumétrica</option>
+                                        <option value="Golden Hour">Golden Hour</option>
+                                        <option value="Luz Suave Lateral">Luz Suave Lateral</option>
+                                        <option value="Neon Contrast">Alto Contraste Neón</option>
+                                        <option value="Studio Lighting">Luz de Estudio Premium</option>
+                                    </select>
+                                </div>
+                                <div class="form-group half">
+                                    <label for="av-lens">Lente / Cámara</label>
+                                    <select id="av-lens">
+                                        <option value="35mm lenta focal">35mm (Amplia, narrativa)</option>
+                                        <option value="85mm retrato bokeh">85mm (Retrato, fondo desenfocado)</option>
+                                        <option value="Macro shot extremo">Lente Macro (Detalle extremo)</option>
+                                        <option value="Drone top-down view">Vista de Dron (Top-down)</option>
+                                        <option value="GoPro fisheye lens">Ojo de Pez (Cámara de acción)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="av-mood">Atmósfera / Mood</label>
+                                <input type="text" id="av-mood" placeholder="Ej. Melancólico, épico, tensión...">
+                            </div>
+                            <button type="submit" class="btn-primary pf-generate-btn">
+                                <i class="ph ph-sparkle"></i> Ensamblar Prompt
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Output Area -->
+                    <div class="prompt-output-area">
+                        <div class="output-header">
+                            <span class="output-label"><i class="ph ph-terminal-window"></i> PROMPT GENERADO</span>
+                            <button id="pf-copy-btn" class="copy-btn" disabled><i class="ph ph-copy"></i>
+                                Copiar</button>
+                        </div>
+                        <div class="output-console">
+                            <pre><code id="pf-result-text">Selecciona un modo, rellena los campos y haz clic en 'Ensamblar Prompt' para ver el resultado mágico aquí...</code></pre>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 

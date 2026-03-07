@@ -427,7 +427,7 @@ main {
 /* Services Section */
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     /* Wider columns */
     gap: 1px;
     /* Creates the "grid line" effect by using the background color */
@@ -1033,7 +1033,7 @@ footer {
     transition-delay: 0.45s;
 }
 
-/* Custom Luxury Cursor */
+/* Minimalist Custom Cursor */
 .custom-cursor,
 .custom-cursor-follower {
     position: fixed;
@@ -1043,34 +1043,34 @@ footer {
     border-radius: 50%;
     z-index: 9999;
     transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-out, width 0.3s ease, height 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
 }
 
 .custom-cursor {
-    width: 6px;
-    height: 6px;
+    width: 4px;
+    height: 4px;
     background-color: var(--text-primary);
-    mix-blend-mode: difference;
-    transition: width 0.2s, height 0.2s;
+    opacity: 1;
 }
 
 .custom-cursor-follower {
-    width: 36px;
-    height: 36px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    transition: transform 0.15s ease-out, width 0.3s, height 0.3s, background-color 0.3s;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--text-primary);
+    opacity: 0.5;
 }
 
-/* Hover state for Cursor */
+/* Hover state for minimalist cursor */
 .custom-cursor.active {
-    width: 0;
-    height: 0;
+    transform: translate(-50%, -50%) scale(1.5);
+    background-color: var(--accent-color);
 }
 
 .custom-cursor-follower.active {
-    width: 60px;
-    height: 60px;
-    background-color: var(--text-primary);
-    mix-blend-mode: difference;
+    width: 40px;
+    height: 40px;
+    opacity: 0.2;
+    background-color: var(--accent-color);
     border-color: transparent;
 }
 

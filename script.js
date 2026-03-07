@@ -89,14 +89,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const videoSrc = btn.getAttribute('data-video');
             const imgSrc = btn.getAttribute('data-image');
             const isKinetik = btn.getAttribute('data-kinetik') === 'true';
-            const isExodo = btn.getAttribute('data-exodo') === 'true';
             const isIronLog = videoSrc && videoSrc.includes('Ironlog');
 
             // Adjust Modal Layout based on project type
             const modalLayout = modal.querySelector('.modal-layout');
             const infoCol = modal.querySelector('.modal-info-col');
 
-            if (isIronLog || isKinetik || isExodo) {
+            if (isIronLog || isKinetik) {
                 modalLayout.style.gridTemplateColumns = '1.2fr 1fr';
                 infoCol.style.display = 'block';
             } else {
@@ -161,34 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                 `;
-            } else if (isExodo) {
-                infoCol.innerHTML = `
-                    <h3>Éxodo: Escenografía Sci-Fi</h3>
-                    <p class="modal-subtitle">IA Concept Art / Dirección de Arte</p>
-                    <div class="feature-list">
-                        <div class="feature-item">
-                            <i class="ph ph-sun"></i>
-                            <div>
-                                <h4>Iluminación Volumétrica</h4>
-                                <p>Control preciso de sombras 'god rays' y neblina dispersa mediante prompts de iluminación global negativa y parámetros de contraste forzado.</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <i class="ph ph-buildings"></i>
-                            <div>
-                                <h4>Escala Monumental</h4>
-                                <p>Técnicas de orquestación visual para simular arquitectura a escala planetaria, integrando elementos de referencia para engañar al ojo y generar inmensidad.</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <i class="ph ph-camera"></i>
-                            <div>
-                                <h4>Control de Encuadre</h4>
-                                <p>Uso de distancias focales (35mm, anamórfico) y reglas de composición cinematográfica integradas en el lenguaje de IA para resultados predecibles y artísticos.</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
             }
 
             // Clear previous media
@@ -223,6 +194,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     mediaContainer.querySelector('.fluid-art-wrapper').classList.add('modal-media-entry');
                 }, 50);
+            } else if (videoSrc) {
+                const videoElement = document.createElement('video');
+                videoElement.id = 'demo-player';
+                videoElement.controls = true;
+                videoElement.autoplay = true;
+                videoElement.style.width = '100%';
+                videoElement.style.maxHeight = '85vh';
+                videoElement.style.display = 'block';
+                videoElement.classList.add('modal-media-entry');
+                const sourceElement = document.createElement('source');
+                sourceElement.src = videoSrc;
+                sourceElement.type = 'video/mp4';
+                videoElement.appendChild(sourceElement);
+                mediaContainer.appendChild(videoElement);
             } else if (imgSrc) {
                 const imgElement = document.createElement('img');
                 imgElement.src = imgSrc;
